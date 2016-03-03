@@ -1,6 +1,6 @@
 # Compile the STM32F10x Standard Peripheral Library
 export
-EXCLUDE = ""
+EXCLUDE = ./src/stm32f4xx_fmc.c
 
 LIB_OUT = libstm32std.a
 
