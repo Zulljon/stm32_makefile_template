@@ -26,6 +26,7 @@ SYSTEM = arm-none-eabi
 
 LDSCRIPT = stm32_flash.ld
 
+PID = stutil.pid
 
 LIBINC := $(shell find $(INCDIR) -name *.h -printf "-I%h/\n"|sort|uniq)
 LIBINC += $(shell find $(LIBDIR) -name *.h -printf "-I%h/\n"|sort|uniq)
@@ -108,6 +109,16 @@ all: $(BIN)
 
 flash: $(BIN)
 	st-flash write $(BIN) $(LOADADDR)
+
+start-debug: $(BIN)
+	st-util & echo $$! > $(PID);
+
+stop-debug: $(PID)
+	kill `cat $(PID)` && rm $(PID)
+
+debug: $(ELF) start-debug
+	$(GDB) --command gdbinit $(ELF)
+	kill `cat $(PID)` && rm $(PID)
 	
 $(BIN): $(ELF)
 	$(OBJCOPY) $(OBJCOPYFLAGS) $(ELF) $(BIN)
