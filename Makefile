@@ -117,7 +117,7 @@ stop-debug: $(PID)
 	kill `cat $(PID)` && rm $(PID)
 
 debug: $(ELF) start-debug
-	$(GDB) --command gdbinit $(ELF)
+	$(GDB) --command .gdbinit $(ELF)
 	kill `cat $(PID)` && rm $(PID)
 	
 $(BIN): $(ELF)
