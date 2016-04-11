@@ -149,6 +149,14 @@ Kill the program with `<CTRL>+C`.
 I'm using ''stm32f429discovery'' board here. If you're using some different board find its config in ''/usr/share/openocd/scripts/board/'' or write your own ;-)
 ```
 
+## Setting up STM32F4 DSP and standard peripherals library
+For automatic setup of library you have a script in ```tools``` directory.
+
+Just execute ```./setup_libzip.sh <zip name>```
+
+Issue ```make``` afterwards and you should have example blinky project compiled.
+Sources are in ```src``` and ```inc``` directories.
+
 ## Sources
 - [http://pulkomandy.tk/_/_Electronique/_Discovering%20the%20STM32F3%20Discovery]
 - [http://vedder.se/2012/07/get-started-with-stm32f4-on-ubuntu-linux/]
